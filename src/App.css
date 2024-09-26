@@ -1,0 +1,55 @@
+html {
+    text-align: center;
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.App.loading {
+    opacity: 0.5;
+}
+
+.App {
+    .App-header {
+        min-height: 20vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        max-width: 100%;
+    }
+
+    .App-footer {
+        margin-top: 2rem;
+        border-top: 1px solid white;
+        height: 20vh;
+    }
+
+    .category-selector {
+        text-align: left;
+    }
+    .utility-icon {
+        gap: 1rem;
+    }
+    display: flex;
+    min-height: 80vh;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+
+    @media (max-width: 980px) {
+        width: 90%;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+    }
+}

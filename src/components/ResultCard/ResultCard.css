@@ -1,0 +1,20 @@
+.card {
+    position: relative;
+    text-align: left;
+    border: 2px solid;
+    border-color: #2d3e44;
+    background-color: rgb(14, 19, 21);
+}
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.result {
+    margin-top: 20px;
+}
+.result div {
+    word-break: break-word;
+    white-space: pre-wrap; /* allows hashtags to wrap correctly */
+}

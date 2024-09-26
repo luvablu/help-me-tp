@@ -1,0 +1,14 @@
+.textElement {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    .label {
+        margin-bottom: 1rem;
+    }
+    .utility-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin: 0;
+    }
+}
