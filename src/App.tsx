@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Loading from "./components/Loading/Loading";
 import ResultCard from "./components/ResultCard/ResutCard";
@@ -8,6 +8,7 @@ import SEO from "./components/SEO/SEO";
 import TextInput from "./components/TextInput/TextInput";
 import useApi from "./hooks/useApi";
 import useLocalStorage from "./hooks/useLocalStorage";
+import { Toast } from "primereact/toast";
 
 interface Category {
   id: string;
@@ -15,6 +16,8 @@ interface Category {
 }
 
 function App() {
+  const toast = useRef<Toast>(null);
+
   const { fetchCategories, fetchNewQuestion, isLoading } = useApi();
   const { userSession, retrieveUserSession } = useLocalStorage();
   const [hashtags, setHashtags] = useState("");
@@ -28,6 +31,7 @@ function App() {
     { name: "True / False", id: "boolean" },
     { name: "Multiple choice", id: "multiple" },
   ];
+  const [buttonTimeout, setButtonTimeout] = useState(false);
   const [selectedType, setSelectedType] = useState("");
 
   const decodeHtml = (htmlText: string) => {
@@ -43,6 +47,15 @@ function App() {
     });
     if (newQuestion && newQuestion.length > 0) {
       setPostMessage(decodeHtml(newQuestion[0].question));
+    } else {
+      setButtonTimeout(true);
+      toast.current?.show({
+        severity: "error",
+        summary: "Wait :(",
+        detail: "Too many requests",
+        life: 3000,
+      });
+      setTimeout(() => setButtonTimeout(false), 5000);
     }
   };
 
@@ -70,6 +83,7 @@ function App() {
   return (
     <div className={`App ${isLoading && "loading"}`}>
       <SEO />
+      <Toast ref={toast} position="center" />
       <header className="App-header">
         <h1>Help me trend c:</h1>
         <p>
@@ -118,7 +132,7 @@ function App() {
               className="utility-icon"
               text
               onClick={getRandomTriviaQuestion}
-              disabled={isLoading}
+              disabled={isLoading || buttonTimeout}
             >
               Generate post
             </Button>
