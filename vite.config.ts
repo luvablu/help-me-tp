@@ -4,6 +4,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/<REPO>/",
+  base: "/help-me-tp/",
   plugins: [react(), tsconfigPaths()],
 });
