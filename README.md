@@ -1,7 +1,7 @@
 
 # Help me trend
 
-Utility to help with trends, it uses [OpenTDB](https://opentdb.com/]). It helps you format the posts easily and if you run out of ideas you can generate some random questions.
+Utility to help with trending parties, it uses [OpenTDB](https://opentdb.com/]). It helps you format the posts easily and if you run out of ideas you can generate some random questions.
 
 I did this because my clipboard gets lost all the time and it was easier so I thought I'd share.
 
