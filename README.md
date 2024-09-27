@@ -14,3 +14,5 @@ It has basic tests, nothing fancy because this was just a tool for myself you ca
 
 ## Contributing
 If you're interested in making changes to this site, just raise an issue and raise a pull request against the main branch
+
+Thank you so much for reading, you can find me on X under the same name [luvablu](https://x.com/luvablu)
