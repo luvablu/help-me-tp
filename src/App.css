@@ -53,3 +53,18 @@ html {
         width: 100%;
     }
 }
+
+.result-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -2rem;
+    text-align: center;
+    .result-refresh-button {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .fill-space {
+        flex: 1;
+    }
+}

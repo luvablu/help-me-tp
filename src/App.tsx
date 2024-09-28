@@ -166,7 +166,19 @@ function App() {
           rows={5}
           onChange={(event) => setHashtags(event.target.value)}
         />
-        <h2>Result</h2>
+        <div className="result-title">
+          <div className="fill-space"></div>
+          <h2 className="fill-space">Result</h2>
+          <div className="fill-space result-refresh-button">
+            <Button
+              icon="pi pi-refresh"
+              severity="info"
+              text
+              onClick={getRandomTriviaQuestion}
+              disabled={isLoading || buttonTimeout}
+            ></Button>
+          </div>
+        </div>
         <ResultCard
           title=""
           postMessage={postMessage}
