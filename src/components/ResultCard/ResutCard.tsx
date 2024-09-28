@@ -31,7 +31,9 @@ const ResultCard: FC<ResultCardProps> = ({
     if (hashtags === "") return hashtags;
     return hashtags
       .split("\n")
-      .map((hashtag) => `#${hashtag.trim()}`)
+      .map((hashtag) => {
+        return hashtag[0] != "#" ? `#${hashtag.trim()}` : hashtag;
+      })
       .join("\n");
   };
 
@@ -39,7 +41,9 @@ const ResultCard: FC<ResultCardProps> = ({
     if (accounts === "") return accounts;
     return accounts
       .split("\n")
-      .map((account) => `@${account.trim()}`)
+      .map((account) => {
+        return account[0] != "@" ? `@${account.trim()}` : account;
+      })
       .join("\n");
   };
 
