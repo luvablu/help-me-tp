@@ -50,7 +50,7 @@ const ResultCard: FC<ResultCardProps> = ({
   const copyToClipboard = () => {
     const processedMessage = postMessage ? `${postMessage}\n\n` : "";
     const processedAccount = accounts ? `${processAccounts()}\n\n` : "";
-    const processedKeywords = keywords ? `${keywords}\n\n` : "";
+    const processedKeywords = keywords ? `${keywords}\n` : "";
     const processedHashtags = hashtags ? `${processHashtags()}` : "";
     navigator.clipboard.writeText(
       `${processedMessage}${processedAccount}${processedKeywords}${processedHashtags}`,
@@ -84,7 +84,7 @@ const ResultCard: FC<ResultCardProps> = ({
         <div className="result">
           {postMessage && <div id="post-message">{`${postMessage}\n\n`}</div>}
           {accounts && <div id="accounts">{`${processAccounts()}\n\n`}</div>}
-          {keywords && <div id="keywords">{`${keywords}\n\n`}</div>}
+          {keywords && <div id="keywords">{`${keywords}\n`}</div>}
           {hashtags && <div id="hashtags">{processHashtags()}</div>}
         </div>
       </Card>
