@@ -41,6 +41,9 @@ function App() {
   };
 
   const getRandomTriviaQuestion = async () => {
+    setButtonTimeout(true);
+    setTimeout(() => setButtonTimeout(false), 4000);
+
     const newQuestion = await fetchNewQuestion({
       category: selectedCategory,
       type: selectedType as "multiple" | "boolean",
@@ -51,8 +54,8 @@ function App() {
       setButtonTimeout(true);
       toast.current?.show({
         severity: "error",
-        summary: "Wait :(",
-        detail: "Too many requests",
+        summary: "Sorry :(",
+        detail: "Something happened, try again later",
         life: 3000,
       });
       setTimeout(() => setButtonTimeout(false), 5000);
