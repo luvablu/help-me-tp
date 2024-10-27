@@ -25,7 +25,7 @@ const ResultCard: FC<ResultCardProps> = ({
 
   const copyToClipboard = () => {
     const processedMessage = postMessage ? `${postMessage}\n\n` : "";
-    const processedKeywords = keywords ? `${keywords}\n\n` : "";
+    const processedKeywords = keywords ? `${keywords}` : "";
     navigator.clipboard.writeText(
       `${processedMessage}${processedKeywords}`,
     );
