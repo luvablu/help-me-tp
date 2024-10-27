@@ -20,9 +20,7 @@ function App() {
 
   const { fetchCategories, fetchNewQuestion, isLoading } = useApi();
   const { userSession, retrieveUserSession } = useLocalStorage();
-  const [hashtags, setHashtags] = useState("");
   const [keywords, setKeyWords] = useState("");
-  const [accounts, setAccounts] = useState("");
   const [postMessage, setPostMessage] = useState("");
   const [categories, setCategories] = useState<Array<Category>>([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -73,9 +71,7 @@ function App() {
   useEffect(() => {
     setSelectedType(userSession?.type || "");
     setSelectedCategory(userSession?.category || "");
-    setAccounts(userSession?.accounts || "");
     setKeyWords(userSession?.keywords || "");
-    setHashtags(userSession?.hastaghs || "");
   }, [userSession]);
 
   useEffect(() => {
@@ -89,11 +85,14 @@ function App() {
       <Toast ref={toast} position="center" />
       <header className="App-header">
         <h1>Help me trend c:</h1>
+      </header>
         <p>
           This utility helps you with trending parties, when you don't know what
           to tweet anymore
         </p>
-      </header>
+        <p>
+          Or it could be useful to copy paste the posts quickly
+        </p>
       <h2>Trivia options </h2>
       <div className="form">
         <Dropdown
@@ -143,31 +142,13 @@ function App() {
           onChange={(event) => setPostMessage(event.target.value)}
         />
         <TextInput
-          placeholder="Accounts ex:&#10;srchafreen&#10;AngelssBecky"
-          label="Accounts"
-          ariaLabel="Accounts for trend"
-          disabled={isLoading}
-          value={accounts}
-          rows={3}
-          onChange={(event) => setAccounts(event.target.value)}
-        />
-        <TextInput
-          placeholder="Keywords ex: TLP HAIRPIN OF LOVE"
-          label="Keywords"
-          ariaLabel="Keywords for trend"
+          placeholder={`@TheLoyalPin\n\nTLP HAIRPIN OF LOVE\n#TheLoyalPin`}
+          label="Accounts, keywords and hashtags"
+          ariaLabel="ccounts, keywords and hashtags for the trending party"
           disabled={isLoading}
           value={keywords}
-          rows={1}
-          onChange={(event) => setKeyWords(event.target.value)}
-        />
-        <TextInput
-          label="Hashtags"
-          placeholder="Hashtags ex:&#10;FreenBecky&#10;srchafreen&#10;Beckysangels"
-          ariaLabel="Hashtags of the trend"
-          value={hashtags}
-          disabled={isLoading}
           rows={5}
-          onChange={(event) => setHashtags(event.target.value)}
+          onChange={(event) => setKeyWords(event.target.value)}
         />
         <div className="result-title">
           <div className="fill-space"></div>
@@ -185,8 +166,6 @@ function App() {
         <ResultCard
           title=""
           postMessage={postMessage}
-          hashtags={hashtags}
-          accounts={accounts}
           keywords={keywords}
           category={selectedCategory}
           type={selectedType}
@@ -203,7 +182,7 @@ function App() {
           >
             OpenTDB
           </a>
-          . Data licensed under
+          . Data licensed under{' '}
           <a
             rel="noopener noreferrer"
             href="https://creativecommons.org/licenses/by-sa/4.0/"
