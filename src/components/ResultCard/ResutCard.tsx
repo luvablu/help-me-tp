@@ -9,8 +9,6 @@ export interface ResultCardProps {
   title: string;
   postMessage: string;
   keywords: string;
-  accounts: string;
-  hashtags: string;
   category: string;
   type: string;
 }
@@ -19,41 +17,17 @@ const ResultCard: FC<ResultCardProps> = ({
   title,
   postMessage,
   keywords,
-  accounts,
-  hashtags,
   category,
   type,
 }) => {
   const toast = useRef<Toast>(null);
   const { saveUserSession } = useLocalStorage();
 
-  const processHashtags = () => {
-    if (hashtags === "") return hashtags;
-    return hashtags
-      .split("\n")
-      .map((hashtag) => {
-        return hashtag[0] != "#" ? `#${hashtag.trim()}` : hashtag;
-      })
-      .join("\n");
-  };
-
-  const processAccounts = () => {
-    if (accounts === "") return accounts;
-    return accounts
-      .split("\n")
-      .map((account) => {
-        return account[0] != "@" ? `@${account.trim()}` : account;
-      })
-      .join("\n");
-  };
-
   const copyToClipboard = () => {
     const processedMessage = postMessage ? `${postMessage}\n\n` : "";
-    const processedAccount = accounts ? `${processAccounts()}\n\n` : "";
-    const processedKeywords = keywords ? `${keywords}\n` : "";
-    const processedHashtags = hashtags ? `${processHashtags()}` : "";
+    const processedKeywords = keywords ? `${keywords}\n\n` : "";
     navigator.clipboard.writeText(
-      `${processedMessage}${processedAccount}${processedKeywords}${processedHashtags}`,
+      `${processedMessage}${processedKeywords}`,
     );
     toast.current?.show({
       severity: "success",
@@ -62,11 +36,9 @@ const ResultCard: FC<ResultCardProps> = ({
       life: 3000,
     });
     saveUserSession({
-      accounts: accounts,
       category: category,
       type: type as "multiple" | "boolean" | "",
       keywords: keywords,
-      hastaghs: hashtags,
     });
   };
 
@@ -83,9 +55,7 @@ const ResultCard: FC<ResultCardProps> = ({
         </Button>
         <div className="result">
           {postMessage && <div id="post-message">{`${postMessage}\n\n`}</div>}
-          {accounts && <div id="accounts">{`${processAccounts()}\n\n`}</div>}
-          {keywords && <div id="keywords">{`${keywords}\n`}</div>}
-          {hashtags && <div id="hashtags">{processHashtags()}</div>}
+          {keywords && <div id="keywords">{`${keywords}\n\n`}</div>}
         </div>
       </Card>
     </>
